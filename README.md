@@ -30,7 +30,6 @@ dsa-tutor-agentic-ai/
 
 ## **Agents Required:**
 
-
 #### **1. Concept Explainer:**
 * This agent is the primary tutor who shall explain core concepts.
 
