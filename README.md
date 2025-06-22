@@ -79,3 +79,28 @@ Think of it like a row of boxes — each box (called an element) holds a value, 
 
 
 ## **Tasks:**
+
+#### **1. Concept Explanation**
+
+**Purpose:** Provides a detailed, beginner-friendly explanation of a programming concept in a chosen language. Includes analogies, real-world scenarios, and step-by-step code examples. Highlights common mistakes and summarizes key points.
+
+#### **2. Problem Generation**
+**Purpose:** Designs a coding problem at a specified difficulty level, targeting the explained concept. Clearly states requirements, constraints, and provides sample input/output. Reinforces understanding of the concept.
+
+#### **3. Solution Evaluation**
+**Purpose:** Reviews student solutions for correctness, efficiency, and adherence to requirements. Delivers a pass/fail verdict with a brief, logical analysis.
+
+#### **4. Code Debugging**
+**Purpose:** Examines student code for errors and suboptimal practices. Pinpoints issues by line number, explains corrections, and provides improved code. Confirms correctness if no issues are found.
+
+#### **5. Doubt Resolution**
+**Purpose:** Answers follow-up student questions about the concept. Uses examples or analogies to clarify misunderstandings and encourages further inquiry.
+
+#### **6. Feedback Collection**
+**Purpose:** Gathers structured feedback from students on clarity, engagement, and usefulness. Organizes responses into a report for continuous improvement.
+
+#### **7. Progress Tracking**
+**Purpose:** Updates and analyzes student progress metrics. Highlights strengths and areas for improvement, and recommends next steps in the learning path.
+
+#### **8. Resource Recommendation**
+**Purpose:** Curates a list of high-quality resources (articles, videos, documentation) for deeper learning of the concept, with brief summaries of each resource’s value.
