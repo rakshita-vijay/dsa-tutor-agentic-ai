@@ -73,3 +73,8 @@ Think of it like a row of boxes — each box (called an element) holds a value, 
 
 #### **8. Resource Recommender:**
 * Suggests supplementary materials (videos, articles, documentation) for deeper learning.
+
+
+--
+
+## **Tasks:**
