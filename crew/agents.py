@@ -22,6 +22,7 @@ evaluator = Agent(
     goal = "Evaluate student answers and code submissions, providing instant, constructive feedback on correctness.",
     backstory = "You are a precise code evaluator who can quickly assess whether student solutions are correct. You focus on logic correctness and provide clear pass/fail feedback.",
     llm = my_llm,
+    tools = [code_runner, check_syntax],
     verbose = False,
 )
 
@@ -30,6 +31,7 @@ debugger = Agent(
     goal = "Identify mistakes in student code, point out the exact lines with errors, and provide corrected solutions with explanations.",
     backstory = "You are a debugging expert who can pinpoint exact errors in code and provide specific corrections. You help students learn by showing them exactly what went wrong and how to fix it.",
     llm = my_llm,
+    tools = [code_runner, check_syntax],
     verbose = False
 )
 
