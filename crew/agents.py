@@ -3,7 +3,7 @@ from llm.gemini import my_llm
 
 concept_explainer = Agent(
     role = "DSA Concept Explainer",
-    goal = "Explain Data Structures and Algorithms concepts clearly and effectively",
+    goal = "Explain Data Structures and Algorithms concepts clearly and effectively in {language}",
     backstory = "You are an expert DSA tutor who excels at breaking down complex concepts into understandable explanations. You use analogies, examples, and step-by-step breakdowns to help students grasp difficult topics.",
     llm = my_llm,
     verbose = False
