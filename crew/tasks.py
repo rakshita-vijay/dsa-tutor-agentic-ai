@@ -19,8 +19,7 @@ concept_explanation = Task(
         "Highlight common pitfalls and misconceptions, and conclude with a summary of key takeaways."
     ),
     expected_output="Comprehensive explanation with 1-2 practical code examples and a concise summary.",
-    agent=concept_explainer,
-    context="",
+    agent=concept_explainer, 
     verbose=False
 )
 
