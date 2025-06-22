@@ -2,7 +2,7 @@
 
 ### **File Structure**
 ```
-dsa_tutor/
+dsa-tutor-agentic-ai/
 ├── .env                      # Store secrets like GEMINI_API_KEY
 ├── requirements.txt          # List of dependencies
 ├── README.md                 # Project overview and setup
