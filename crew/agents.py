@@ -1,5 +1,6 @@
 from crewai import Agent
 from llm.gemini import my_llm
+from crew.tools import run_code, check_syntax
 
 concept_explainer = Agent(
     role = "DSA Concept Explainer",
