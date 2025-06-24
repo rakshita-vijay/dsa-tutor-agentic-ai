@@ -24,7 +24,7 @@ evaluator = Agent(
     backstory = "You are a precise code evaluator who can quickly assess whether student solutions are correct. You focus on logic correctness and provide clear pass/fail feedback.",
     llm = my_llm,
     tools = [run_code, check_syntax],
-    verbose = False,
+    verbose = False
 )
 
 debugger = Agent(
