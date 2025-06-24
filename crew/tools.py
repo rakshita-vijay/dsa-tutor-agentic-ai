@@ -139,8 +139,6 @@ def check_syntax(code: str, language: str = "python") -> dict:
                     return {"error": result.stderr}
                 return {"error": ""}
             except Exception as e:
-                return {"error": str(e)
+                return {"error": str(e)}
     else:
         return {"error": f"Syntax checking not supported for {language}."}
-
-
