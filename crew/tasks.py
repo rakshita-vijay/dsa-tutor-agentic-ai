@@ -1,5 +1,7 @@
 from crewai import Task
 
+from streamlit_app import concept, language, num_questions, difficulty, problem, code, question, history, performance, needs
+
 from agents import concept_explainer, mcq_question_asker, coding_question_asker, answer_checker, debugger, doubt_solver, feedback_provider, progress_tracker, resource_recommender
 
 concept_explanation = Task(
