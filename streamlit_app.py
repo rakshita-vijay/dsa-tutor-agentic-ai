@@ -1,7 +1,3 @@
-# Replace system SQLite with modern version
-importlib.import_module("pysqlite3")
-sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
-
 
 import streamlit as st
 from crew.agents import (
