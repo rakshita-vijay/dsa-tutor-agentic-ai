@@ -1,3 +1,6 @@
+from dotenv import load_dotenv 
+load_dotenv()
+
 import streamlit as st
  
 # from crew.tasks import (create_concept_explanation_task, create_mcq_question_task)
