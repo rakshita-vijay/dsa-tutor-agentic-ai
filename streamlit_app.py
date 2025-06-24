@@ -3,6 +3,7 @@ load_dotenv()
 
 import sys
 import os
+from pathlib import Path
 
 # Add virtual environment site-packages to path
 venv_path = "/path/to/your/venv"
