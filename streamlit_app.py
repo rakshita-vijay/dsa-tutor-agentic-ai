@@ -1,11 +1,7 @@
 import streamlit as st
 
 
-from crew.tasks import (
-    create_concept_explanation_task,
-    create_mcq_question_task
-    # Add other task functions as needed
-)
+from crew.tasks import (create_concept_explanation_task, create_mcq_question_task)
 
 # Initialize session state variables safely
 def init_session_state():
