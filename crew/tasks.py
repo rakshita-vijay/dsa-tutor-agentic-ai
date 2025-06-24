@@ -1,15 +1,6 @@
 from crewai import Task
 
-from agents import (
-    concept_explainer,
-    problem_generator,
-    evaluator,
-    debugger,
-    doubt_solver,
-    feedback_collector,
-    progress_tracker,
-    resource_recommender
-)
+from agents import concept_explainer, mcq_question_asker, coding_question_asker, answer_checker, debugger, doubt_solver, feedback_provider, progress_tracker, resource_recommender
 
 concept_explanation = Task(
     description=(
@@ -23,7 +14,19 @@ concept_explanation = Task(
     verbose=False
 )
 
-problem_generation = Task(
+mcq_question_generation = Task(
+    description=(
+        "Design a {difficulty} level multiple-choice question focused on the {concept} in {language}. "
+        "Clearly state the problem requirements and constraints. "
+        "Ensure the problem reinforces the concept explained earlier."
+    ),
+    expected_output="A question with four options a, b, c and d out of which only one is correct.",
+    agent=problem_generator,
+    context=[concept_explanation],
+    verbose=False
+)
+
+coding_question_generation = Task(
     description=(
         "Design a {difficulty} level coding problem focused on the {concept} in {language}. "
         "Clearly state the problem requirements and constraints. "
