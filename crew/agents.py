@@ -5,6 +5,8 @@ gemini_model = get_gemini_model()
 
 from streamlit_app  import concept, language, num_questions, difficulty
 
+# we need: debugger, doubt_solver, progress_tracker, resource_recommender  
+
 concept_explainer = Agent(
   role="{concept} Concept Explainer",
   goal='''Explain the concept of {concept} to a beginner student with:
