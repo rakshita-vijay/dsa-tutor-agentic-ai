@@ -3,9 +3,7 @@ from llm.gemini import get_gemini_model
 
 gemini_model = get_gemini_model()
 
-from streamlit_app  import concept, language, num_questions, difficulty, code, problem_statement, question, history, performance, needs
-
-# we need: debugger, doubt_solver, progress_tracker, resource_recommender  
+from streamlit_app  import concept, language, num_questions, difficulty, code, problem_statement, question, history, performance, needs 
 
 concept_explainer = Agent(
   role="{concept} Concept Explainer",
