@@ -1,13 +1,35 @@
 from crewai import Crew
 from llm.gemini import my_llm
 
-from agents import concept_explainer, mcq_question_asker, coding_question_asker, answer_checker, debugger, doubt_solver, feedback_provider, progress_tracker, resource_recommender 
- 
-from tasks import concept_explanation, mcq_question_generation, coding_question_generation. solution_evaluation, solution_evaluation, code_debugging, doubt_resolution, feedback_collection, progress_tracking, resource_recommendation
+from crew.agents import (
+    get_concept_explainer, 
+    get_mcq_question_asker, 
+    get_coding_question_asker, 
+    get_answer_checker,
+    get_debugger, 
+    get_doubt_solver, 
+    get_feedback_collector, 
+    get_progress_tracker, 
+    get_resource_recommender
+)
+
+from crew.tasks import (
+    create_concept_explanation_task, 
+    create_mcq_question_task, 
+    create_coding_question_task, 
+    create_solution_evaluation_task,
+    create_code_debugging_task, 
+    create_doubt_resolution_task, 
+    create_feedback_collection_task, 
+    create_progress_tracking_task, 
+    create_resource_recommendation_task
+) 
 
 crewww = Crew(
-  agents = [concept_explainer, mcq_question_asker, coding_question_asker, answer_checker, debugger, doubt_solver, feedback_provider, progress_tracker, resource_recommender],
-  tasks = [concept_explanation, mcq_question_generation, coding_question_generation. solution_evaluation, solution_evaluation, code_debugging, doubt_resolution, feedback_collection, progress_tracking, resource_recommendation],
+  agents = [get_concept_explainer, get_mcq_question_asker,  get_coding_question_asker, get_answer_checker, get_debugger, get_doubt_solver,  get_feedback_collector,  get_progress_tracker,  get_resource_recommender],
+ 
+  tasks = [create_concept_explanation_task, create_mcq_question_task, create_coding_question_task, create_solution_evaluation_task, create_code_debugging_task, create_doubt_resolution_task, create_feedback_collection_task, create_progress_tracking_task, create_resource_recommendation_task],
+ 
   process = "sequential",
   verbose = False,
   memory = False,
