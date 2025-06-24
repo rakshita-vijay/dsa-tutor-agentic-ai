@@ -10,8 +10,9 @@ st.subheader("Learn Data Structures & Algorithms")
 # Sidebar for agent controls
 with st.sidebar:
     st.header("Agent Configuration")
+    language = st.selectbox("Programming Language", ["Python", "Java", "C++", "C"])
     difficulty = st.select_slider("Difficulty Level", ["Beginner", "Intermediate", "Advanced"])
-    focus_area = st.multiselect("Focus Areas", ["Arrays", "Trees", "Graphs", "DP"])
+    topic = st.selectbox("DSA Topic", ["Arrays", "Linked Lists", "Stacks", "Queues", "Trees", "Graphs", "Sorting", "Searching", "DP"])
 
 # Main chat interface
 for message in st.session_state.messages:
