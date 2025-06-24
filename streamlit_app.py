@@ -1,6 +1,13 @@
 from dotenv import load_dotenv 
 load_dotenv()
 
+import sys
+import os
+
+# Add virtual environment site-packages to path
+venv_path = "/path/to/your/venv"
+sys.path.insert(0, f"{venv_path}/lib/python3.13/site-packages")
+
 import streamlit as st
  
 # from crew.tasks import (create_concept_explanation_task, create_mcq_question_task)
