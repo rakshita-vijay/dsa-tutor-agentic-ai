@@ -3,7 +3,7 @@ from llm.gemini import my_llm
 
 from agents import concept_explainer, mcq_question_asker, coding_question_asker, answer_checker, debugger, doubt_solver, feedback_provider, progress_tracker, resource_recommender 
  
-from tasks import concept_explanation, problem_generation, solution_evaluation, code_debugging, doubt_resolution, feedback_collection, progress_tracking, resource_recommendation
+from tasks import concept_explanation, mcq_question_generation, coding_question_generation. solution_evaluation, solution_evaluation, code_debugging, doubt_resolution, feedback_collection, progress_tracking, resource_recommendation
 
 crewww = Crew(
   agents = [concept_explainer, problem_generator, evaluator, debugger, doubt_solver, feedback_collector, progress_tracker, resource_recommender],
