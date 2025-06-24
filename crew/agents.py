@@ -1,7 +1,7 @@
 from crewai import Agent
 from llm.gemini import get_gemini_model
 
-gemini_model = get_gemini_model()
+gemini_model = get_gemini_model() 
 
 def get_concept_explainer(concept, language):
     return Agent(
@@ -62,7 +62,7 @@ def get_answer_checker(concept, problem, code):
         memory=False
     )
 
-def get_debugger(concept, code, problem_statement):
+def get_debugger(concept, problem, code):
     return Agent(
         role=f"{concept} Debugging Specialist",
         goal=f'''Given a code and the problem statement, identify any bugs or logical errors and explain them clearly.
@@ -70,7 +70,7 @@ def get_debugger(concept, code, problem_statement):
         Code:
         {code}
         Problem statement:
-        {problem_statement}
+        {problem}
         Provide:
         1. Correctness (Pass/Fail with test results)
         2. List of bugs or errors
