@@ -16,7 +16,7 @@ class DSACrew:
         agents=[task.agent],
         tasks=[task],
         process=Process.sequential,
-        verbose=2,
+        verbose=False,
         memory=False
       )
       return crew.kickoff()
