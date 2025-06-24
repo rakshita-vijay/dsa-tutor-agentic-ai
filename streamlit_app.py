@@ -2,8 +2,8 @@ import os
 os.environ["CHROMA_DISABLE_SQLITE_VERSION_CHECK"] = "1"
 
 import sys
-__import__('pysqlite3')
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+__import__('sqlite3')
+sys.modules['sqlite3'] = sys.modules.pop('sqlite3')
 
 import streamlit as st
 from crew.agents import (
