@@ -4,3 +4,4 @@ streamlit
 python-dotenv 
 chromadb>=0.4.24
 google-generativeai 
+pysqlite3-binary
