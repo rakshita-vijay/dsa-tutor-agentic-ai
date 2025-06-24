@@ -13,16 +13,26 @@ from crew.agents import (
   get_resource_recommender
 )
 
-def create_concept_explanation_task(concept, language):
+def create_concept_explanation_task(concept, language, simple = False):
   """Create a concept explanation task with dynamic agent""" 
   try:
     agent = get_concept_explainer(concept, language)
-    return Task(
-      description=f"""Provide a detailed explanation of {concept} in {language}. 
+    if simple:
+      description = f"""Explain the concept of {concept} in {language} in the simplest possible terms,
+            - Use very basic language and avoid technical jargon.
+            - Give a real-world analogy.
+            - Provide a super simple code example.
+            - Keep the explanation short and very easy to understand."""
+      expected_output = "Very simple, beginner-friendly explanation with analogy and a basic code example."
+    else:
+      description = f"""Provide a detailed explanation of {concept} in {language}. 
       Begin with a simple definition, then use analogies and real-world scenarios to make the concept relatable. 
       Include at least two practical code examples, each with step-by-step explanations. 
       Highlight common pitfalls and misconceptions, and conclude with a summary of key takeaways.""",
-      expected_output="Comprehensive explanation with 1-2 practical code examples and a concise summary.",
+      expected_output = "Comprehensive explanation with 1-2 practical code examples and a concise summary."
+    return Task(
+      description = description,
+      expected_output=expected_output,
       agent=agent,
       verbose=False
     )
