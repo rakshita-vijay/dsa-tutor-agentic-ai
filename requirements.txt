@@ -1,6 +1,6 @@
 crewai
 crewai-tools>=0.0.15
 python-dotenv 
-psqlite3-binary 
+pysqlite3-binary 
 google-generativeai  
 streamlit 
