@@ -1,17 +1,7 @@
 from crewai import Task
 
 # Import the dynamic agent creation functions
-from crew.agents import (
-  get_concept_explainer, 
-  get_mcq_question_asker, 
-  get_coding_question_asker, 
-  get_answer_checker,
-  get_debugger, 
-  get_doubt_solver, 
-  get_feedback_collector, 
-  get_progress_tracker, 
-  get_resource_recommender
-)
+from crew.agents import get_concept_explainer,get_mcq_question_asker, get_coding_question_asker, get_answer_checker, get_debugger, get_doubt_solver, get_feedback_collector, get_progress_tracker, get_resource_recommender 
 
 def create_concept_explanation_task(concept, language, simple = False):
   """Create a concept explanation task with dynamic agent""" 
