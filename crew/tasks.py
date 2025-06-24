@@ -1,10 +1,11 @@
 from crewai import Task
 
 # Import the dynamic agent creation functions
-from crew.agents import get_concept_explainer, get_mcq_question_asker, get_coding_question_asker, get_answer_checker, get_debugger, get_doubt_solver, get_feedback_collector, get_progress_tracker, get_resource_recommender 
+# from crew.agents import get_concept_explainer, get_mcq_question_asker, get_coding_question_asker, get_answer_checker, get_debugger, get_doubt_solver, get_feedback_collector, get_progress_tracker, get_resource_recommender 
 
 def create_concept_explanation_task(concept, language, simple = False):
   """Create a concept explanation task with dynamic agent""" 
+  from crew.agents import get_concept_explainer
   try:
     agent = get_concept_explainer(concept, language)
     if simple:
@@ -31,7 +32,8 @@ def create_concept_explanation_task(concept, language, simple = False):
     return None
 
 def create_mcq_question_task(concept, language, num_questions=3, difficulty="intermediate"):
-    """Create MCQ generation task with dynamic agent"""
+  """Create MCQ generation task with dynamic agent"""
+  from crew.agents import get_mcq_question_asker 
   try:
     agent = get_mcq_question_asker(concept, num_questions, difficulty)
     return Task(
@@ -49,7 +51,8 @@ def create_mcq_question_task(concept, language, num_questions=3, difficulty="int
     return None
 
 def create_coding_question_task(concept, language, difficulty="intermediate"):
-    """Create coding problem generation task with dynamic agent"""
+  """Create coding problem generation task with dynamic agent"""
+  from crew.agents import get_coding_question_asker 
   try:
     agent = get_coding_question_asker(concept, difficulty)
     return Task(
@@ -66,7 +69,8 @@ def create_coding_question_task(concept, language, difficulty="intermediate"):
     return None
 
 def create_solution_evaluation_task(concept, problem, code, language):
-    """Create solution evaluation task with dynamic agent"""
+  """Create solution evaluation task with dynamic agent"""
+  from crew.agents import get_answer_checker 
   try:
     agent = get_answer_checker(concept, problem, code)
     return Task(
@@ -86,7 +90,8 @@ def create_solution_evaluation_task(concept, problem, code, language):
     return None
 
 def create_code_debugging_task(concept, problem, code, language):
-    """Create code debugging task with dynamic agent"""
+  """Create code debugging task with dynamic agent"""
+  from crew.agents import get_debugger 
   try:
     agent = get_debugger(concept, problem, code)
     return Task(
@@ -106,7 +111,8 @@ def create_code_debugging_task(concept, problem, code, language):
     return None
 
 def create_doubt_resolution_task(concept, question, language):
-    """Create doubt resolution task with dynamic agent"""
+  """Create doubt resolution task with dynamic agent"""
+  from crew.agents import get_doubt_solver  
   try:
     agent = get_doubt_solver(concept, question)
     return Task(
@@ -124,7 +130,8 @@ def create_doubt_resolution_task(concept, question, language):
     return None
 
 def create_feedback_collection_task(concept, code, language):
-    """Create feedback collection task with dynamic agent"""
+  """Create feedback collection task with dynamic agent"""
+  from crew.agents import get_feedback_collector 
   try:
     agent = get_feedback_collector(concept, code)
     return Task(
@@ -147,7 +154,8 @@ def create_feedback_collection_task(concept, code, language):
     return None
 
 def create_progress_tracking_task(concept, history, performance):
-    """Create progress tracking task with dynamic agent"""
+  """Create progress tracking task with dynamic agent"""
+  from crew.agents import get_progress_tracker 
   try:
     agent = get_progress_tracker(concept, history, performance)
     return Task(
@@ -166,7 +174,8 @@ def create_progress_tracking_task(concept, history, performance):
     return None
 
 def create_resource_recommendation_task(concept, language, needs="general learning"):
-    """Create resource recommendation task with dynamic agent"""
+  """Create resource recommendation task with dynamic agent"""
+  from crew.agents import get_resource_recommender 
   try:
     agent = get_resource_recommender(concept, needs)
     return Task(
