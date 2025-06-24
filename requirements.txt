@@ -1,5 +1,5 @@
 
-pysqlite3-binary==0.5.2
+# pysqlite3-binary==0.5.2
 chromadb>=0.4.24
 crewai>=0.30.0
 streamlit>=1.30.0
