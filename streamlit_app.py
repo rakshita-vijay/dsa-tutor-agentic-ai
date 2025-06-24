@@ -1,7 +1,8 @@
-
 import sys
-__import__('sqlite3')
-sys.modules['sqlite3'] = sys.modules.pop('sqlite3')
+import importlib
+
+importlib.import_module("pysqlite3")
+sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 
 import os
 os.environ["CHROMA_DISABLE_SQLITE_VERSION_CHECK"] = "1"
