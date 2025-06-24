@@ -5,10 +5,7 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 
 from crewai import Crew
-from crew.tasks import (
-create_concept_explanation_task, create_mcq_question_task, create_coding_question_task, create_solution_evaluation_task, create_code_debugging_task,
-create_doubt_resolution_task, create_feedback_collection_task, create_progress_tracking_task,create_resource_recommendation_task
-)
+from crew.tasks import (create_concept_explanation_task, create_mcq_question_task, create_coding_question_task, create_solution_evaluation_task, create_code_debugging_task, create_doubt_resolution_task, create_feedback_collection_task, create_progress_tracking_task,create_resource_recommendation_task)
 
 # --- Step 1: Language selection ---
 if "language" not in st.session_state:
