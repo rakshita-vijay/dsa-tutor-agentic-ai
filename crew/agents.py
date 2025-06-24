@@ -1,7 +1,12 @@
-from crewai import Agent
-from llm.gemini import get_gemini_model
+from crewai import Agent 
 
 gemini_model = get_gemini_model() 
+
+def get_gemini_model():
+    from llm.gemini import get_gemini_model as _get_model
+    return _get_model()
+    
+gemini_model = get_gemini_model()
 
 def get_concept_explainer(concept, language):
     return Agent(
