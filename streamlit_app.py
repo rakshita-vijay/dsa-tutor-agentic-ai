@@ -22,9 +22,56 @@ def run_concept_explanation():
         st.error(f"Error in concept explanation: {str(e)}")
         return None    
 
-def run_mcq_generation():
+def run_mcq_question_generation():
     try:
         mcq_crew = Crew(
             agents = [mcq_question_asker],
-            tasks = [
+            tasks = [mcq_question_generation],
+            verbose = False
+        )
+        inputs = {
+            'concept': st.session_state.selected_topic,
+            'language': st.session_state.selected_language,
+            'difficulty': st.session_state.selected_difficulty
+        }
+        result = mcq_crew.kickoff(inputs = inputs)
+        return result.raw if hasattr(result, 'raw') else str(result)
+    except Exception as e:
+        st.error(f"Error in concept explanation: {str(e)}")
+        return None 
 
+def run_coding_question_generation():
+    try:
+        code_crew = Crew(
+            agents = [coding_question_asker],
+            tasks = [coding_question_generation],
+            verbose = False
+        )
+        inputs = {
+            'concept': st.session_state.selected_topic,
+            'language': st.session_state.selected_language,
+            'difficulty': st.session_state.selected_difficulty
+        }
+        result = code_crew.kickoff(inputs = inputs)
+        return result.raw if hasattr(result, 'raw') else str(result)
+    except Exception as e:
+        st.error(f"Error in concept explanation: {str(e)}")
+        return None 
+
+def run_solution_evaluation():
+    try:
+        soln_crew = Crew(
+            agents = [answer_checker],
+            tasks = [solution_evaluation],
+            verbose = False
+        )
+        result = code_crew.kickoff()
+        return result.raw if hasattr(result, 'raw') else str(result)
+    except Exception as e:
+        st.error(f"Error in concept explanation: {str(e)}")
+        return None 
+
+def run_code_debugging():
+    try:
+        debug_crew = Crew(
+            agents = 
