@@ -1,13 +1,15 @@
-from dotenv import load_dotenv 
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent))
+
+from dotenv import load_dotenv
 load_dotenv()
 
-import sys
 import os
-from pathlib import Path
 
 # Add virtual environment site-packages to path
-venv_path = "/path/to/your/venv"
-sys.path.insert(0, f"{venv_path}/lib/python3.13/site-packages")
+# venv_path = "/path/to/your/venv"
+# sys.path.insert(0, f"{venv_path}/lib/python3.13/site-packages")
 
 import streamlit as st
  
