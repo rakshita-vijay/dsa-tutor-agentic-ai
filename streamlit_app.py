@@ -91,6 +91,7 @@ elif st.session_state.step == 'question':
         else:
             st.success("Thank you for practicing! You can restart or choose a new topic.")
             if st.button("Restart"):
-                for key in ['step', 'language', 'topic', 'explanation', 'understood', 'question', 'questions_asked']:
+                for key in ['step', 'language', 'topic', 'explanation', 'understood', 'question']:
                     st.session_state[key] = None if key != 'step' else 'language_selection'
+                st.session_state.questions_asked = 0
                 st.experimental_rerun()
