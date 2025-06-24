@@ -2,7 +2,10 @@ import subprocess
 import tempfile
 import os
 
-def run_code(code: str, language: str = "python") -> dict:
+from crewai_tools import tool
+
+@tool("Code Runner")
+def run_code(code: str, language: str = "python") -> dict: 
     """
     Executes the provided code and returns the output or error.
     Supports Python, Java, C++, and C.
@@ -92,7 +95,8 @@ def run_code(code: str, language: str = "python") -> dict:
 
     except Exception as e:
         return {"error": str(e)}
-
+        
+@tool("Syntax Checker") 
 def check_syntax(code: str, language: str = "python") -> dict:
     """
     Checks syntax of the code for multiple languages.
