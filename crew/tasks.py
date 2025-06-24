@@ -53,7 +53,7 @@ solution_evaluation = Task(
 
 code_debugging = Task(
     description=(
-        "Analyze the student's code for the {concept} problem. "
+        "Analyze the student's code for the {concept} problem in {language} language. "
         "Identify all errors or suboptimal practices, specifying the exact line numbers where issues occur. "
         "For each error, explain why it is incorrect and provide the corrected code with explanations. "
         "If the code is correct, confirm and briefly explain why."
