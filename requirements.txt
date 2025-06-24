@@ -1,5 +1,5 @@
 crewai
-crewai[tools]
+crewai_tools
 python-dotenv 
 chromadb>=0.4.24
 google-generativeai 
