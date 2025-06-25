@@ -1,5 +1,5 @@
 import streamlit as st
-from crew.crew import DSACrew
+from crew.mycrew import DSACrew
 from crew.tasks import (
     create_concept_explanation_task,
     create_mcq_question_task,
