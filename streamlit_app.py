@@ -1,125 +1,104 @@
-import sys
-from pathlib import Path
-sys.path.append(str(Path(__file__).parent))
-
-from dotenv import load_dotenv
-load_dotenv()
-
-import os
-
-# Add virtual environment site-packages to path
-# venv_path = "/path/to/your/venv"
-# sys.path.insert(0, f"{venv_path}/lib/python3.13/site-packages")
-
 import streamlit as st
- 
-# from crew.tasks import (create_concept_explanation_task, create_mcq_question_task)
+from crew import DSACrew
+from tasks import (
+    create_concept_explanation_task,
+    create_mcq_question_task,
+    create_solution_evaluation_task
+)
 
-from crew.tasks import create_concept_explanation_task,create_mcq_question_task, create_coding_question_task, create_solution_evaluation_task, create_code_debugging_task, create_doubt_resolution_task, create_feedback_collection_task, create_progress_tracking_task, create_resource_recommendation_task
+# --- Constants ---
+LANGUAGES = ["Java", "Python", "C", "C++"]
+TOPICS = ["Array", "Strings", "Linked List", "Stack", "Queue", "Tree", "Graph", "Sorting", "Searching"]
 
-# Initialize session state variables safely
-def init_session_state():
-    if "language" not in st.session_state:
-        st.session_state.language = None
-    if "topic" not in st.session_state:
-        st.session_state.topic = None
-    if "explained" not in st.session_state:
-        st.session_state.explained = False
-    if "explanation" not in st.session_state:
-        st.session_state.explanation = ""
-    if "understood" not in st.session_state:
-        st.session_state.understood = None
-    if "question_count" not in st.session_state:
-        st.session_state.question_count = 0
-    if "last_question" not in st.session_state:
-        st.session_state.last_question = ""
-    if "more_questions" not in st.session_state:
-        st.session_state.more_questions = True
+# --- Session State Initialization ---
+if "step" not in st.session_state:
+    st.session_state.step = 1
+    st.session_state.language = None
+    st.session_state.topic = None
+    st.session_state.simple = False
+    st.session_state.explanation = ""
+    st.session_state.question = ""
+    st.session_state.correct_answer = ""
+    st.session_state.feedback = ""
+    st.session_state.user_answer = ""
+    st.session_state.ask_more = True
 
-# Main app function
-def main():
-    st.title("DSA Tutor :books:")
-    st.markdown("**Learn Data Structures & Algorithms with Agentic AI!**")
-    
-    init_session_state()
-    
-    # 1. Language selection
-    if not st.session_state.language:
-        st.session_state.language = st.selectbox(
-            "Choose programming language:",
-            ["Python", "Java", "C", "C++"]
+dsa_crew = DSACrew()
+
+# --- Step 1: Language Selection ---
+if st.session_state.step == 1:
+    st.header("Select Programming Language")
+    st.session_state.language = st.selectbox("Choose language:", LANGUAGES)
+    if st.button("Next"):
+        st.session_state.step = 2
+
+# --- Step 2: Topic Selection ---
+elif st.session_state.step == 2:
+    st.header("Select DSA Topic")
+    st.session_state.topic = st.selectbox("Choose topic:", TOPICS)
+    if st.button("Next"):
+        st.session_state.step = 3
+        st.session_state.simple = False  # Start with normal explanation
+
+# --- Step 3: Concept Explanation ---
+elif st.session_state.step == 3:
+    st.header(f"Explaining: {st.session_state.topic} in {st.session_state.language}")
+    if not st.session_state.explanation:
+        # Get explanation (simple or normal)
+        task = create_concept_explanation_task(
+            st.session_state.topic, st.session_state.language, st.session_state.simple
         )
-        st.stop()
-    
-    # 2. Topic selection
-    if not st.session_state.topic:
-        st.session_state.topic = st.selectbox(
-            "Choose a DSA topic:",
-            ["Array", "String", "Linked List", "Stack", "Queue", "Tree", "Graph", "Hash Table"]
+        st.session_state.explanation = dsa_crew.run_task(
+            create_concept_explanation_task,
+            st.session_state.topic, st.session_state.language, st.session_state.simple
         )
-        st.stop()
-    
-    # 3. Concept explanation
-    if not st.session_state.explained or st.session_state.understood is False:
-        # Determine if we need a simpler explanation
-        simple = st.session_state.explained and st.session_state.understood is False
-        
-        if st.button("Explain the topic" if not st.session_state.explained else "Explain again (simpler)"):
-            with st.spinner("Generating explanation..."):
-                task = create_concept_explanation_task(
-                    st.session_state.topic,
-                    st.session_state.language,
-                    simple=simple
-                )
-                st.session_state.explanation = task.execute() if hasattr(task, "execute") else task.run()
-                st.session_state.explained = True
-                st.session_state.understood = None
-            st.experimental_rerun()
-        
-        if st.session_state.explanation:
-            st.markdown("### Explanation")
-            st.write(st.session_state.explanation)
-            st.session_state.understood = st.radio(
-                "Did you understand the explanation?",
-                ("Yes", "No"),
-                index=0 if st.session_state.understood is None else (0 if st.session_state.understood else 1),
-            ) == "Yes"
-            
-            if st.button("Continue"):
-                st.experimental_rerun()
-        st.stop()
-    
-    # 4. Question loop
-    if st.session_state.understood and st.session_state.more_questions:
-        if st.button("Get a question", key=f"q{st.session_state.question_count}"):
-            with st.spinner("Generating question..."):
-                st.session_state.question_count += 1
-                task = create_mcq_question_task(
-                    st.session_state.topic,
-                    st.session_state.language,
-                    num_questions=1,
-                    difficulty="easy"
-                )
-                st.session_state.last_question = task.execute() if hasattr(task, "execute") else task.run()
-            st.experimental_rerun()
-        
-        if st.session_state.last_question:
-            st.markdown("### Practice Question")
-            st.write(st.session_state.last_question)
-            st.session_state.more_questions = st.radio(
-                "Would you like another question?",
-                ("Yes", "No"),
-                index=0
-            ) == "Yes"
-            
-            if st.button("Next"):
-                if st.session_state.more_questions:
-                    st.session_state.last_question = ""
-                    st.experimental_rerun()
-                else:
-                    st.success("Great job! You can restart or choose a new topic/language.")
-                    st.stop()
+    st.markdown(st.session_state.explanation)
+    understood = st.radio("Did you understand?", ["Understood", "Not Understood"])
+    if st.button("Continue"):
+        if understood == "Understood":
+            st.session_state.step = 4
+            st.session_state.explanation = ""  # Reset for next time
+        else:
+            st.session_state.simple = True  # Request simpler explanation
+            st.session_state.explanation = ""  # Force re-explanation
 
-# Run the app
-if __name__ == "__main__":
-    main()
+# --- Step 4: Ask a Question ---
+elif st.session_state.step == 4:
+    st.header(f"Question on {st.session_state.topic}")
+    if not st.session_state.question:
+        # Generate MCQ question
+        st.session_state.question = dsa_crew.run_task(
+            create_mcq_question_task,
+            st.session_state.topic, st.session_state.language, 1, "easy"
+        )
+    st.markdown(st.session_state.question)
+    st.session_state.user_answer = st.text_input("Your Answer (e.g., A, B, C, D):")
+    if st.button("Submit Answer"):
+        st.session_state.step = 5
+
+# --- Step 5: Check Answer & Feedback ---
+elif st.session_state.step == 5:
+    st.header("Checking Your Answer")
+    # Evaluate answer (assuming MCQ format)
+    feedback = dsa_crew.run_task(
+        create_solution_evaluation_task,
+        st.session_state.topic, st.session_state.question, st.session_state.user_answer, st.session_state.language
+    )
+    st.markdown(feedback)
+    more = st.radio("Do you want another question?", ["Yes", "No"])
+    if st.button("Continue"):
+        if more == "Yes":
+            st.session_state.step = 4
+            st.session_state.question = ""
+            st.session_state.user_answer = ""
+        else:
+            st.session_state.step = 6
+
+# --- Step 6: End or Restart ---
+elif st.session_state.step == 6:
+    st.header("Session Complete")
+    if st.button("Restart"):
+        for key in st.session_state.keys():
+            del st.session_state[key]
+        st.experimental_rerun()
+
