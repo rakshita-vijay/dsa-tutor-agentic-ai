@@ -1,6 +1,6 @@
 import streamlit as st
-from crew import DSACrew
-from tasks import create_concept_explanation_task, create_mcq_question_task, create_solution_evaluation_task
+from crew.mycrew import DSACrew
+from crew.tasks import create_concept_explanation_task, create_mcq_question_task, create_solution_evaluation_task
 
 # Initialize session state
 if "step" not in st.session_state:
