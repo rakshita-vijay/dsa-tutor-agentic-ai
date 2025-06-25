@@ -4,5 +4,5 @@ google-generativeai>=0.5.0
 python-dotenv>=1.0.0
 crewai==0.28.8
 chromadb==0.4.22
-pydantic==1.10.13
+
 
